@@ -43,7 +43,7 @@ function setup() {
 
     }   
 
-    //constraints: {
+    //video: {
 
       //facingMode: "user"
 
