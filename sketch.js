@@ -12,7 +12,7 @@ This example uses p5 preload function to create the classifier
 // Classifier Variable
 let classifier;
 // Model URL
-let imageModelURL = 'https://teachablemachine.withgoogle.com/models/bXy2kDNi/';
+let imageModelURL = 'https://weiii9090.github.io/bakery/';
 
 // Video
 let video;
@@ -26,10 +26,33 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(320, 260);
+  createCanvas(320, 320);
   // Create the video
+  
+  var constraints = {
+
+    audio: false,
+
+    video: {
+
+      facingMode: {
+
+        exact: "environment"
+
+      }
+
+    }   
+
+    //constraints: {
+
+      //facingMode: "user"
+
+    //}
+
+  };
+  
   video = createCapture(VIDEO);
-  video.size(320, 240);
+  video.size(320, 320);
   video.hide();
 
   flippedVideo = ml5.flipImage(video)
@@ -65,6 +88,7 @@ function gotResult(error, results) {
   // The results are in an array ordered by confidence.
   // console.log(results[0]);
   label = results[0].label;
+  ThunkableWebviewerExtension.postMessage(label);
   // Classifiy again!
   classifyVideo();
 }
